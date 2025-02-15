@@ -9,6 +9,8 @@ mixer.init()
 mixer.music.load('space.ogg')
 mixer.music.play()
 fire_sound = mixer.Sound('fire.ogg')
+lost_sound = mixer.Sound("lost.wav")
+win_sound = mixer.Sound("win.wav")
 
 font.init()
 font2 = font.Font(None, 36)
@@ -89,7 +91,7 @@ for i in range(3):
 finish = False
 run = True
 font1 = font.Font(None, 80)
-win = font1.render('YOU WIN!', True, (255, 255,255))
+win = font1.render('YOU WIN!', True, (255,255,255))
 lose = font1.render('YOU LOSE!', True, (180, 0, 0))
 rel_time = False
 num_fire = 0
@@ -153,11 +155,13 @@ while run:
             print("lost", lost)
             print("life", life)
             finish = True
-            window.blit(lose, (200, 200))
+            window.blit(lose, (300, 300))
+            lost_sound.play()
 
         if  score >= 10:
             finish = True
-            window.blit(win, (200, 200))
+            window.blit(win, (300, 300))
+            win_sound.play()
 
         text = font2.render('Score: ' + str(score), 1, (225,225,225))
         window.blit(text, (10,20))
